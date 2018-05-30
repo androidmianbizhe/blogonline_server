@@ -1,0 +1,70 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>后台管理</title>
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/admin/css/common.css"/>
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/admin/css/main.css"/>
+    <script type="text/javascript" src="__PUBLIC__/admin/js/libs/modernizr.min.js"></script>
+</head>
+<body>
+
+{include file="Common/top" /}
+
+<div class="container clearfix">
+    
+    {include file="Common/left" /}
+
+    <!--/sidebar-->
+    <div class="main-wrap">
+
+        <div class="crumb-wrap">
+            <div class="crumb-list"><i class="icon-font"></i><a href="/jscss/admin">首页</a><span class="crumb-step">&gt;</span><span class="crumb-name">作品管理</span></div>
+        </div>
+        
+        <div class="result-wrap">
+            <form name="myform" id="myform" method="post">
+                <div class="result-title">
+                    <div class="result-list">
+                        <a href="{:url('link/add')}"><i class="icon-font"></i>新增栏目</a>
+                        
+                    </div>
+                </div>
+                <div class="result-content">
+                    <table class="result-tab" width="100%">
+                        <tr>
+                            <th class="tc" width="5%"><input class="allChoose" name="" type="checkbox"></th>
+                            
+                            <th>ID</th>
+                            <th>链接标题</th>
+                            <th>链接描述</th>
+                            <th>链接地址</th>
+                            <th>操作</th>
+                        </tr>
+
+                        {volist name="links" id="vo"}
+                        <tr>
+                            <td class="tc"><input name="id[]" value="59" type="checkbox"></td>
+                            <td>{$vo.id}</td>
+                            <td><a target="_blank" href="#" title="">{$vo.title}</a></td>
+
+                            <td>{$vo.des}</td>
+
+                            <td>{$vo.url}</td>
+
+                            <td>
+                                <a class="link-update" href="{:url('edit',array('id'=>$vo.id))}">修改</a>
+                                <a class="link-del" onclick="return confirm('你确定要删除此栏目吗?');" href="{:url('del',array('id'=>$vo.id))}">删除</a>
+                            </td>
+                        </tr>
+                        {/volist}
+                    </table>
+                    
+                </div>
+            </form>
+        </div>
+    </div>
+    <!--/main-->
+</div>
+</body>
+</html>

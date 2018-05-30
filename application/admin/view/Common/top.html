@@ -1,0 +1,16 @@
+<div class="topbar-wrap white">
+    <div class="topbar-inner clearfix">
+        <div class="topbar-logo-wrap clearfix">
+            <h1 class="topbar-logo none"><a class=navbar-brand href="index.html">后台管理</a></h1>
+            <ul class="navbar-list clearfix">
+                <li><a class=on href="{:url('Index/index')}">首页</a></li>
+                <li><a href="{:url('Index/index')}" target=_blank>网站首页</a> </li></ul></div>
+        <div class=top-info-wrap>
+            <ul class="top-info-list clearfix">
+                <li><a href="{:url('admin/lst')}" style="color: #ff0027"><?php echo '管理员: ',session('username') ?></a> </li>
+                <li><a href="{:url('admin/edit',array('id'=>session('id')))}">修改密码</a> </li>
+                <li><a href="{:url('login/logout')}">退出</a> </li>
+            </ul>
+        </div>
+    </div>
+</div>

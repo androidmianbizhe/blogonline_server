@@ -1,0 +1,101 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>后台管理</title>
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/admin/css/common.css"/>
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/admin/css/main.css"/>
+    <!-- <link rel="stylesheet" type="text/css" href="__PUBLIC__/admin/css/bootstrap.min.css"/> -->
+    <script type="text/javascript" src="__PUBLIC__/admin/js/libs/modernizr.min.js"></script>
+</head>
+<body>
+
+<style type="text/css">
+    
+    ul.pagination li{
+        float: left;
+        margin: 10px;
+        padding:5px;
+        border: 1px solid #ccc; 
+    }
+
+
+</style>
+
+{include file="Common/top" /}
+
+<div class="container clearfix">
+    
+    {include file="Common/left" /}
+
+    <!--/sidebar-->
+    <div class="main-wrap">
+
+        <div class="crumb-wrap">
+            <div class="crumb-list"><i class="icon-font"></i><a href="/jscss/admin">首页</a><span class="crumb-step">&gt;</span><span class="crumb-name">文章管理</span></div>
+        </div>
+        
+        <div class="result-wrap">
+            <form name="myform" id="myform" method="post">
+                <div class="result-title">
+                    <div class="result-list">
+                        <a href="{:url('article/add')}"><i class="icon-font"></i>新增文章</a>
+                        
+                    </div>
+                </div>
+                <div class="result-content">
+                    <table class="result-tab" width="100%">
+                        <tr>
+                            <th class="tc" width="5%"><input class="allChoose" name="" type="checkbox"></th>
+                            
+                            <th width="3%">ID</th>
+                            <th>文章标题</th>
+                            <th >缩略图</th>
+                            <th >点击量</th>
+                            <th >所属栏目</th>
+                            <th >发布时间</th>
+                            <th width="8%">操作</th>
+                        </tr>
+
+                        {volist name="articleres" id="vo"}
+                        <tr>
+                        	<!-- 选择 -->
+                            <td class="tc"><input name="id[]" value="59" type="checkbox"></td>
+                            <!-- id -->
+                            <td>{$vo._id}</td>
+                            <!-- 标题 -->
+                            <td>{$vo.title}</td>
+                            <!-- 缩略图 -->
+                            <td >
+                                {if condition="$vo['pic'] neq '' "}
+                                <img height="50" src="__PUBLIC__{$vo.pic}">
+                                {else /}
+                                暂无缩略图
+                                {/if}
+                            </td>
+							<!-- 点击量 -->
+                            <td>{$vo.click}</td>
+                            <!-- 所属栏目 -->
+                             <td>{$vo.catename}</td>
+							<!-- 发布时间 -->
+							<td>{$vo.time|date="Y-m-d",###}</td>
+							<!-- 操作 -->
+                            <td>
+                                <a class="link-update" href="{:url('article/edit',array('_id'=>$vo._id))}">修改</a>
+                                <a class="link-del" onclick="return confirm('你确定要删除此栏目吗?');" href="{:url('article/del',array('_id'=>$vo._id))}">删除</a>
+                            </td>
+                        </tr>
+                        {/volist}
+                        
+                    </table>
+                    
+                    <div  class="post pagebar" >{$articleres->render()}</div>
+
+                </div>
+            </form>
+        </div>
+    </div>
+    <!--/main-->
+</div>
+</body>
+</html>
